@@ -113,7 +113,7 @@ public class TablaReserva extends javax.swing.JFrame {
 
         jTextField7.setBackground(new java.awt.Color(244, 237, 227));
         jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField7.setText("Consensionario Luxury Autos");
+        jTextField7.setText("Concesionario Luxury Autos");
         jTextField7.setBorder(null);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
