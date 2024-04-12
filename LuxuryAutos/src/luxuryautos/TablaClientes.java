@@ -4,6 +4,8 @@
  */
 package luxuryautos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marcu
@@ -363,15 +365,27 @@ public class TablaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        if (validarCampos()) {
+        // Realizar la acción
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        if (validarCampos()) {
+        // Realizar la acción
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        if (validarCampos()) {
+        // Realizar la acción
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
@@ -445,6 +459,18 @@ public class TablaClientes extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean validarCampos() {
+    return !jTextField14.getText().isEmpty() &&
+           !jTextField8.getText().isEmpty() &&
+           !jTextField9.getText().isEmpty() &&
+           !jTextField10.getText().isEmpty() &&
+           !jTextField11.getText().isEmpty() &&
+           !jTextField15.getText().isEmpty() &&
+           !jTextField13.getText().isEmpty() &&
+           !jTextField12.getText().isEmpty() &&
+           !jTextField7.getText().isEmpty();
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;

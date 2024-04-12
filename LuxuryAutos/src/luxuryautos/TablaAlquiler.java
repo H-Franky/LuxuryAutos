@@ -4,6 +4,8 @@
  */
 package luxuryautos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marcu
@@ -328,15 +330,27 @@ public class TablaAlquiler extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (validarCampos()) {
+        // Realizar la acción
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        if (validarCampos()) {
+        // Realizar la acción
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        if (validarCampos()) {
+        // Realizar la acción
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -390,6 +404,15 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean validarCampos() {
+    return !jTextField1.getText().isEmpty() &&
+           !jTextField2.getText().isEmpty() &&
+           !jTextField3.getText().isEmpty() &&
+           !jTextField5.getText().isEmpty() &&
+           !jTextField6.getText().isEmpty() &&
+           !jTextField7.getText().isEmpty();
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

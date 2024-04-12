@@ -4,6 +4,8 @@
  */
 package luxuryautos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gonza
@@ -122,14 +124,29 @@ public class TablaEmpleados extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
         jButton2.setText("Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         jButton3.setText("Editar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         jButton4.setText("Elimnar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -292,6 +309,30 @@ public class TablaEmpleados extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (validarCampos()) {
+        // Realizar la acción
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       if (validarCampos()) {
+        // Realizar la acción
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (validarCampos()) {
+        // Realizar la acción
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -327,6 +368,18 @@ public class TablaEmpleados extends javax.swing.JFrame {
         });
     }
 
+    private boolean validarCampos() {
+    return !jTextField1.getText().isEmpty() &&
+           !jTextField8.getText().isEmpty() &&
+           !jTextField9.getText().isEmpty() &&
+           !jTextField6.getText().isEmpty() &&
+           !jTextField2.getText().isEmpty() &&
+           !jTextField3.getText().isEmpty() &&
+           !jTextField4.getText().isEmpty() &&
+           !jTextField5.getText().isEmpty() &&
+           !jTextField7.getText().isEmpty();
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
