@@ -4,6 +4,12 @@
  */
 package luxuryautos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gonza
@@ -59,21 +65,36 @@ public class TablaReserva extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("ID_Reserva");
+        jLabel3.setText("Nombre");
 
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("ID_Cliente");
+        jLabel5.setText("Telefono");
 
         jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("ID_Vehiculo");
+        jLabel4.setText("Vehiculo");
 
         jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -85,6 +106,11 @@ public class TablaReserva extends javax.swing.JFrame {
         jLabel6.setText("Fecha_Reserva");
 
         jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -96,6 +122,11 @@ public class TablaReserva extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
         jButton2.setText("Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,7 +146,7 @@ public class TablaReserva extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Telefono", "Vehiculo", "Fecha"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -243,6 +274,93 @@ public class TablaReserva extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+                                                  
+    
+        String input = jTextField1.getText().trim(); // Utiliza trim() para eliminar los espacios en blanco al principio y al final.
+        if (!input.isEmpty() && !validateInput(input)) {
+    // Si la entrada no es válida y no está vacía, muestra un mensaje de error.
+    JOptionPane.showMessageDialog(null, "Entrada no válida. Solo se permiten letras y espacios.", "Error", JOptionPane.ERROR_MESSAGE);
+    // También puedes limpiar el campo de texto si lo deseas.
+
+        }
+
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+ String input = jTextField2.getText().trim(); // Elimina los espacios en blanco al inicio y al final del texto
+    
+    // Verifica si la entrada no es un número o si tiene más de 8 caracteres
+    if (!input.matches("\\d{0,8}")) {
+        // Si la entrada no es válida, muestra un mensaje de error
+        JOptionPane.showMessageDialog(null, "Solo se aceptan números y no más de 8 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+        // Limpia el campo de texto
+        jTextField2.setText("");
+    }
+
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+  String input = jTextField3.getText().trim(); // Elimina los espacios en blanco al inicio y al final del texto
+    
+    // Verifica si la entrada no consiste en números, letras y espacios
+    if (!input.matches("[a-zA-Z0-9 ]*")) {
+        // Si la entrada no es válida, muestra un mensaje de error
+        JOptionPane.showMessageDialog(null, "Solo se aceptan números, letras y espacios.", "Error", JOptionPane.ERROR_MESSAGE);
+        // Limpia el campo de texto
+        jTextField3.setText("");
+    }
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+String input = jTextField4.getText().trim(); // Elimina los espacios en blanco al inicio y al final del texto
+    
+    // Define el formato de fecha esperado
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    dateFormat.setLenient(false); // No permitir fechas inválidas (por ejemplo, 31 de febrero)
+    
+    try {
+        // Intenta convertir el texto ingresado en un objeto Date
+        Date date = dateFormat.parse(input);
+        // Si la conversión es exitosa, la fecha tiene un formato válido
+    } catch (ParseException e) {
+        // Si la conversión falla, muestra un mensaje de error
+        JOptionPane.showMessageDialog(null, "Formato de fecha inválido. Debe ser dd/MM/yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
+        // Limpia el campo de texto
+        jTextField4.setText("");
+    }    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Obtener los valores de los campos anteriores
+    String valor1 = jTextField1.getText().trim();
+    String valor2 = jTextField2.getText().trim();
+    String valor3 = jTextField3.getText().trim();
+    String valor4 = jTextField4.getText().trim();
+
+    // Verificar si alguno de los campos anteriores está vacío
+    if (valor1.isEmpty() || valor2.isEmpty() || valor3.isEmpty() || valor4.isEmpty()) {
+        // Si algún campo está vacío, mostrar un mensaje de error
+        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        // Si ninguno de los campos está vacío, agregar los valores a la tabla
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.addRow(new Object[]{valor1, valor2, valor3, valor4});
+        
+        // Mostrar mensaje de éxito
+        JOptionPane.showMessageDialog(null, "Campos agregados a la tabla correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Limpiar los campos de texto después de agregarlos a la tabla (opcional)
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
+ private boolean validateInput(String input) {
+    // Utilizamos una expresión regular para validar la entrada.
+    // La expresión regular /^[A-Za-z ]+$/ verifica que la cadena contenga solo letras mayúsculas, minúsculas y espacios.
+    return input.matches("^[A-Za-z ]+$");
+}
     /**
      * @param args the command line arguments
      */
