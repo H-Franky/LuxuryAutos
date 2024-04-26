@@ -3,19 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package luxuryautos;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 
 /**
  *
  * @author Eliseo
  */
 public class Registrarse extends javax.swing.JFrame {
+    
+    private Connection connection;
 
     /**
      * Creates new form Registrarse
      */
     public Registrarse() {
-        initComponents();
+    initComponents();
+    try {
+        connection = ConexionSQLServer.getConnection();
+        System.out.println("Conexión exitosa");
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
     }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
