@@ -4,7 +4,13 @@
  */
 package luxuryautos;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.DriverManager;
 
 /**
  *
@@ -12,11 +18,15 @@ import javax.swing.JOptionPane;
  */
 public class TablaAlquiler extends javax.swing.JFrame {
 
+    private DefaultTableModel modelo;
+    
     /**
      * Creates new form TablaAlquiler
      */
     public TablaAlquiler() {
         initComponents();
+        modelo = (DefaultTableModel) jTable1.getModel();
+        cargarDatos();
     }
 
     /**
@@ -50,17 +60,16 @@ public class TablaAlquiler extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(244, 237, 227));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Alquiler");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +77,6 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
         jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +84,6 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +91,6 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
         jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,22 +98,16 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("ID_Alquiler");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("ID_Vehiculo");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Fecha_Alquiler");
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Fecha_Devolucion");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Monto_Alquiler");
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -121,10 +121,8 @@ public class TablaAlquiler extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
-        jButton1.setText("Eliminar");
+        jButton1.setText("Guardar");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,8 +130,6 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         jButton2.setText("Editar");
         jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -143,8 +139,6 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         jButton3.setText("Eliminar");
         jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -154,7 +148,6 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
         jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +155,6 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
         jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +162,6 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
         jTextField7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,10 +169,8 @@ public class TablaAlquiler extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("ID_Cliente");
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Estado");
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
@@ -193,6 +182,15 @@ public class TablaAlquiler extends javax.swing.JFrame {
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jButton5.setText("Guardar Cambios");
+        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -214,9 +212,11 @@ public class TablaAlquiler extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(107, 107, 107)
                                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(242, 242, 242)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton5)
+                                    .addGap(126, 126, 126)
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +291,8 @@ public class TablaAlquiler extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(78, Short.MAX_VALUE))
@@ -330,27 +331,112 @@ public class TablaAlquiler extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (validarCampos()) {
-        // Realizar la acción
+        if (validarCampos(true)) {
+        String idAlquiler = jTextField1.getText();
+        String idCliente = jTextField5.getText();
+        String idVehiculo = jTextField2.getText();
+        String fechaAlquiler = jTextField7.getText();
+        String fechaDevolucion = jTextField3.getText();
+        String montoAlquiler = jTextField6.getText();
+        String estado = jTextField4.getText();
+
+        try (Connection conn = ConexionSQLServer.getConnection()) {
+            String query = "INSERT INTO Alquiler (IdAlquiler, IdClientes, IdVehiculo, FechaAlquiler, FechaDevolucion, MontoAlquiler, Estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, idAlquiler);
+                pstmt.setString(2, idCliente);
+                pstmt.setString(3, idVehiculo);
+                pstmt.setString(4, fechaAlquiler);
+                pstmt.setString(5, fechaDevolucion);
+                pstmt.setString(6, montoAlquiler);
+                pstmt.setString(7, estado);
+
+                int rowsInserted = pstmt.executeUpdate();
+                if (rowsInserted > 0) {
+                    JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al insertar los datos");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexión o consulta: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        cargarDatos();
     } else {
         JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (validarCampos()) {
-        // Realizar la acción
+        if (validarCampos(false)) {
+        // Obtener el índice de la fila seleccionada
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila para editar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Obtener los valores de la fila seleccionada
+        int idAlquiler = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString());
+        String idCliente = jTable1.getValueAt(selectedRow, 1).toString();
+        String idVehiculo = jTable1.getValueAt(selectedRow, 2).toString();
+        String fechaAlquiler = jTable1.getValueAt(selectedRow, 3).toString();
+        String fechaDevolucion = jTable1.getValueAt(selectedRow, 4).toString();
+        String montoAlquiler = jTable1.getValueAt(selectedRow, 5).toString();
+        String estado = jTable1.getValueAt(selectedRow, 6).toString();
+
+        // Establecer los valores en los JTextField
+        jTextField1.setText(String.valueOf(idAlquiler));
+        jTextField5.setText(idCliente);
+        jTextField2.setText(idVehiculo);
+        jTextField7.setText(fechaAlquiler);
+        jTextField3.setText(fechaDevolucion);
+        jTextField6.setText(montoAlquiler);
+        jTextField4.setText(estado);
+        
+        jButton1.setEnabled(false);
     } else {
         JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
     }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (validarCampos()) {
-        // Realizar la acción
-    } else {
-        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+        // Obtener la fila seleccionada
+int filaSeleccionada = jTable1.getSelectedRow();
+if (filaSeleccionada == -1) {
+    JOptionPane.showMessageDialog(null, "Debes seleccionar un alquiler para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+
+// Obtener el IdAlquiler de la fila seleccionada
+int idAlquiler = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+
+// Confirmar la eliminación
+int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar este alquiler?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+if (confirmacion == JOptionPane.YES_OPTION) {
+    // Eliminar el alquiler de la base de datos
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        String sql = "DELETE FROM Alquiler WHERE IdAlquiler=?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, idAlquiler);
+
+        int rowsDeleted = pstmt.executeUpdate();
+        if (rowsDeleted > 0) {
+            JOptionPane.showMessageDialog(null, "Alquiler eliminado correctamente");
+            // Eliminar la fila de la tabla
+            modelo.removeRow(filaSeleccionada);
+            cargarDatos();
+        }
+        pstmt.close();
+        conn.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al eliminar alquiler: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -370,48 +456,146 @@ public class TablaAlquiler extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (validarCampos(true)) {
+        // Obtener los valores de los JTextField
+        int idAlquiler = Integer.parseInt(jTextField1.getText());
+        String idCliente = jTextField5.getText();
+        String idVehiculo = jTextField2.getText();
+        String fechaAlquiler = jTextField7.getText();
+        String fechaDevolucion = jTextField3.getText();
+        String montoAlquiler = jTextField6.getText();
+        String estado = jTextField4.getText();
+
+        try {
+            Connection conn = ConexionSQLServer.getConnection();
+            PreparedStatement ps = conn.prepareStatement("UPDATE Alquiler SET IdClientes = ?, IdVehiculo = ?, FechaAlquiler = ?, FechaDevolucion = ?, MontoAlquiler = ?, Estado = ? WHERE IdAlquiler = ?");
+            ps.setString(1, idCliente);
+            ps.setString(2, idVehiculo);
+            ps.setString(3, fechaAlquiler);
+            ps.setString(4, fechaDevolucion);
+            ps.setString(5, montoAlquiler);
+            ps.setString(6, estado);
+            ps.setInt(7, idAlquiler);
+
+            int result = ps.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            ps.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        limpiarCampos();
+        jButton1.setEnabled(true);
+        cargarDatos();
+    } else {
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TablaAlquiler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TablaAlquiler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TablaAlquiler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TablaAlquiler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TablaAlquiler().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(TablaAlquiler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(TablaAlquiler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(TablaAlquiler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(TablaAlquiler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            TablaAlquiler tablaAlquiler = new TablaAlquiler();
+            tablaAlquiler.setVisible(true);
+            tablaAlquiler.cargarDatos();
+        }
+    });
+}
     
-    private boolean validarCampos() {
-    return !jTextField1.getText().isEmpty() &&
-           !jTextField2.getText().isEmpty() &&
-           !jTextField3.getText().isEmpty() &&
-           !jTextField5.getText().isEmpty() &&
-           !jTextField6.getText().isEmpty() &&
-           !jTextField7.getText().isEmpty();
+    public void cargarDatos() {
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("IdAlquiler");
+    modelo.addColumn("IdClientes");
+    modelo.addColumn("IdVehiculo");
+    modelo.addColumn("FechaAlquiler");
+    modelo.addColumn("FechaDevolucion");
+    modelo.addColumn("MontoAlquiler");
+    modelo.addColumn("Estado");
+
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM Alquiler");
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Object[] fila = new Object[7];
+            fila[0] = rs.getInt("IdAlquiler");
+            fila[1] = rs.getInt("IdClientes");
+            fila[2] = rs.getInt("IdVehiculo");
+            fila[3] = rs.getString("FechaAlquiler");
+            fila[4] = rs.getString("FechaDevolucion");
+            fila[5] = rs.getDouble("MontoAlquiler");
+            fila[6] = rs.getString("Estado");
+            modelo.addRow(fila);
+        }
+
+        jTable1.setModel(modelo);
+
+        rs.close();
+        ps.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+private boolean validarCampos(boolean esNuevoRegistro) {
+    if (esNuevoRegistro) {
+        return !jTextField1.getText().isEmpty() &&
+               !jTextField5.getText().isEmpty() &&
+               !jTextField2.getText().isEmpty() &&
+               !jTextField7.getText().isEmpty() &&
+               !jTextField3.getText().isEmpty() &&
+               !jTextField6.getText().isEmpty() &&
+               !jTextField4.getText().isEmpty();
+    } else {
+        return true; // Permitir edición sin validar campos
+    }
+}
+
+    
+    private void limpiarCampos() {
+    jTextField1.setText("");
+    jTextField5.setText("");
+    jTextField2.setText("");
+    jTextField7.setText("");
+    jTextField3.setText("");
+    jTextField6.setText("");
+    jTextField4.setText("");
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -419,6 +603,7 @@ public class TablaAlquiler extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

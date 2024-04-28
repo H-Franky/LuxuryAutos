@@ -5,6 +5,12 @@
 package luxuryautos;
 
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import java.sql.DriverManager;
 
 /**
  *
@@ -12,11 +18,15 @@ import javax.swing.JOptionPane;
  */
 public class TablaInventario extends javax.swing.JFrame {
 
+    private DefaultTableModel modelo;
+    
     /**
      * Creates new form TablaInventario
      */
     public TablaInventario() {
         initComponents();
+         modelo = (DefaultTableModel) jTable1.getModel();
+         cargarDatos();
     }
 
     /**
@@ -48,17 +58,16 @@ public class TablaInventario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(244, 237, 227));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Inventario");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +75,6 @@ public class TablaInventario extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
         jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +82,6 @@ public class TablaInventario extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +89,6 @@ public class TablaInventario extends javax.swing.JFrame {
             }
         });
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
         jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +96,6 @@ public class TablaInventario extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
         jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +103,6 @@ public class TablaInventario extends javax.swing.JFrame {
             }
         });
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
         jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,25 +110,18 @@ public class TablaInventario extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("ID_Inventario");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("ID_Vehiculo");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Cantidad");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Precio_Compra");
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Fecha_Ingreso");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Estado");
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -138,10 +135,8 @@ public class TablaInventario extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
-        jButton1.setText("Eliminar");
+        jButton1.setText("Guardar");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,8 +144,6 @@ public class TablaInventario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         jButton2.setText("Editar");
         jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -160,8 +153,6 @@ public class TablaInventario extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         jButton3.setText("Eliminar");
         jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -183,12 +174,21 @@ public class TablaInventario extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jButton4.setText("Guardar Cambios");
+        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -200,25 +200,27 @@ public class TablaInventario extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(105, 105, 105)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(140, 140, 140)
+                        .addGap(4, 4, 4)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(243, 243, 243)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(132, 132, 132)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(102, 102, 102)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(89, 89, 89)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,7 +272,8 @@ public class TablaInventario extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
@@ -315,27 +318,107 @@ public class TablaInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (validarCampos()) {
-        // Realizar la acción
-    } else {
-        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+        if (validarCampos(true)) {
+    String idInventario = jTextField1.getText();
+    String idVehiculo = jTextField5.getText();
+    String cantidad = jTextField2.getText();
+    String precioCompra = jTextField3.getText();
+    String fechaIngreso = jTextField4.getText();
+    String estado = jTextField6.getText();
+
+    try (Connection conn = ConexionSQLServer.getConnection()) {
+        String query = "INSERT INTO Inventario (IdInventario, IdVehiculo, Cantidad, PrecioCompra, FechaIngreso, Estado) VALUES (?, ?, ?, ?, ?, ?)";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, idInventario);
+            pstmt.setString(2, idVehiculo);
+            pstmt.setString(3, cantidad);
+            pstmt.setString(4, precioCompra);
+            pstmt.setString(5, fechaIngreso);
+            pstmt.setString(6, estado);
+
+            int rowsInserted = pstmt.executeUpdate();
+            if (rowsInserted > 0) {
+                JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al insertar los datos");
+            }
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error de conexión o consulta: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+    cargarDatos();
+} else {
+    JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (validarCampos()) {
-        // Realizar la acción
+        if (validarCampos(false)) {
+        // Obtener el índice de la fila seleccionada
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila para editar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Obtener los valores de la fila seleccionada
+        int idInventario = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString());
+        int idVehiculo = Integer.parseInt(jTable1.getValueAt(selectedRow, 1).toString());
+        int cantidad = Integer.parseInt(jTable1.getValueAt(selectedRow, 2).toString());
+        double precioCompra = Double.parseDouble(jTable1.getValueAt(selectedRow, 3).toString());
+        String fechaIngreso = jTable1.getValueAt(selectedRow, 4).toString();
+        String estado = jTable1.getValueAt(selectedRow, 5).toString();
+
+        // Establecer los valores en los JTextField
+        jTextField1.setText(String.valueOf(idInventario));
+        jTextField5.setText(String.valueOf(idVehiculo));
+        jTextField2.setText(String.valueOf(cantidad));
+        jTextField3.setText(String.valueOf(precioCompra));
+        jTextField4.setText(fechaIngreso);
+        jTextField6.setText(estado);
+        
+        jButton1.setEnabled(false);
     } else {
         JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (validarCampos()) {
-        // Realizar la acción
-    } else {
-        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+        // Obtener la fila seleccionada
+int filaSeleccionada = jTable1.getSelectedRow();
+if (filaSeleccionada == -1) {
+    JOptionPane.showMessageDialog(null, "Debes seleccionar un registro para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+
+// Obtener el IdInventario de la fila seleccionada
+int idInventario = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+
+// Confirmar la eliminación
+int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar este registro?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+if (confirmacion == JOptionPane.YES_OPTION) {
+    // Eliminar el registro de la base de datos
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        String sql = "DELETE FROM Inventario WHERE IdInventario=?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, idInventario);
+
+        int rowsDeleted = pstmt.executeUpdate();
+        if (rowsDeleted > 0) {
+            JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
+            // Eliminar la fila de la tabla
+            modelo.removeRow(filaSeleccionada);
+            cargarDatos();
+        }
+        pstmt.close();
+        conn.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al eliminar el registro: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -343,53 +426,141 @@ public class TablaInventario extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // Obtener los valores de los JTextField
+int idInventario = Integer.parseInt(jTextField1.getText());
+int idVehiculo = Integer.parseInt(jTextField5.getText());
+int cantidad = Integer.parseInt(jTextField2.getText());
+String precioCompra = jTextField3.getText();
+String fechaIngreso = jTextField4.getText();
+String estado = jTextField6.getText();
+
+try {
+    Connection conn = ConexionSQLServer.getConnection();
+    PreparedStatement ps = conn.prepareStatement("UPDATE Inventario SET IdVehiculo = ?, Cantidad = ?, PrecioCompra = ?, FechaIngreso = ?, Estado = ? WHERE IdInventario = ?");
+    ps.setInt(1, idVehiculo);
+    ps.setInt(2, cantidad);
+    ps.setString(3, precioCompra);
+    ps.setString(4, fechaIngreso);
+    ps.setString(5, estado);
+    ps.setInt(6, idInventario);
+
+    int result = ps.executeUpdate();
+    if (result > 0) {
+        JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+    } else {
+        JOptionPane.showMessageDialog(null, "No se pudo actualizar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    ps.close();
+    conn.close();
+    cargarDatos();
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TablaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TablaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TablaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TablaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TablaInventario().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(TablaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(TablaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(TablaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(TablaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            TablaInventario tablaInventario = new TablaInventario();
+            tablaInventario.setVisible(true);
+            tablaInventario.cargarDatos();
+        }
+    });
+}
     
-    private boolean validarCampos() {
-    return !jTextField1.getText().isEmpty() &&
-           !jTextField2.getText().isEmpty() &&
-           !jTextField3.getText().isEmpty() &&
-           !jTextField5.getText().isEmpty() &&
-           !jTextField6.getText().isEmpty();
+    public void cargarDatos() {
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("IdInventario");
+    modelo.addColumn("IdVehiculo");
+    modelo.addColumn("Cantidad");
+    modelo.addColumn("PrecioCompra");
+    modelo.addColumn("FechaIngreso");
+    modelo.addColumn("Estado");
+
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM Inventario");
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Object[] fila = new Object[9];
+            fila[0] = rs.getInt("IdInventario");
+            fila[1] = rs.getInt("IdVehiculo");
+            fila[2] = rs.getInt("Cantidad");
+            fila[3] = rs.getString("PrecioCompra");
+            fila[4] = rs.getString("FechaIngreso");
+            fila[5] = rs.getString("Estado");
+            modelo.addRow(fila);
+        }
+
+        jTable1.setModel(modelo);
+
+        rs.close();
+        ps.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 }
 
+
+
+    
+    private boolean validarCampos(boolean esNuevoRegistro) {
+    if (esNuevoRegistro) {
+        return !jTextField1.getText().isEmpty() &&
+               !jTextField5.getText().isEmpty() &&
+               !jTextField2.getText().isEmpty() &&
+               !jTextField3.getText().isEmpty() &&
+               !jTextField4.getText().isEmpty() &&
+               !jTextField6.getText().isEmpty();
+    } else {
+        return true;
+    }
+}
+    
+    private void limpiarCampos() {
+    jTextField1.setText("");
+    jTextField5.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField6.setText("");
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

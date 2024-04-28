@@ -4,7 +4,13 @@
  */
 package luxuryautos;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.DriverManager;
 
 /**
  *
@@ -12,11 +18,15 @@ import javax.swing.JOptionPane;
  */
 public class TablaEmpleados extends javax.swing.JFrame {
 
+    private DefaultTableModel modelo;
+    
     /**
      * Creates new form TablaEmpleados
      */
     public TablaEmpleados() {
         initComponents();
+        modelo = (DefaultTableModel) jTable1.getModel();
+        cargarDatos();
     }
 
     /**
@@ -56,6 +66,7 @@ public class TablaEmpleados extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField10 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,6 +182,15 @@ public class TablaEmpleados extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jButton5.setText("Guardar Cambios");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -227,9 +247,11 @@ public class TablaEmpleados extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addComponent(jButton2)
-                .addGap(257, 257, 257)
+                .addGap(97, 97, 97)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(102, 102, 102)
                 .addComponent(jButton4)
                 .addGap(160, 160, 160))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -274,14 +296,15 @@ public class TablaEmpleados extends javax.swing.JFrame {
                         .addGap(58, 58, 58)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)))
+                            .addComponent(jButton4)
+                            .addComponent(jButton5)
+                            .addComponent(jButton3)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -310,74 +333,273 @@ public class TablaEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (validarCampos()) {
-        // Realizar la acción
-    } else {
-        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+        if (validarCampos(true)) {
+    String idEmpleado = jTextField1.getText();
+    String nombre = jTextField2.getText();
+    String apellido = jTextField3.getText();
+    String telefono = jTextField4.getText();
+    String direccion = jTextField5.getText();
+    String cargo = jTextField7.getText();
+    String fechaInicio = jTextField8.getText();
+    String salario = jTextField6.getText();
+    String correoElectronico = jTextField9.getText();
+
+    try (Connection conn = ConexionSQLServer.getConnection()) {
+        String query = "INSERT INTO Empleados (IdEmpleado, Nombre, Apellido, Telefono, Direccion, Cargo, FechaInicio, Salario, CorreoElectronico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, idEmpleado);
+            pstmt.setString(2, nombre);
+            pstmt.setString(3, apellido);
+            pstmt.setString(4, telefono);
+            pstmt.setString(5, direccion);
+            pstmt.setString(6, cargo);
+            pstmt.setString(7, fechaInicio);
+            pstmt.setString(8, salario);
+            pstmt.setString(9, correoElectronico);
+
+            int rowsInserted = pstmt.executeUpdate();
+            if (rowsInserted > 0) {
+                JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al insertar los datos");
+            }
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error de conexión o consulta: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+    cargarDatos();
+} else {
+    JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       if (validarCampos()) {
-        // Realizar la acción
-    } else {
-        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+       if (validarCampos(false)) {
+    // Obtener el índice de la fila seleccionada
+    int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(null, "Seleccione una fila para editar", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
+
+    // Obtener los valores de la fila seleccionada
+    String idEmpleado = jTable1.getValueAt(selectedRow, 0).toString();
+    String nombre = jTable1.getValueAt(selectedRow, 1).toString();
+    String apellido = jTable1.getValueAt(selectedRow, 2).toString();
+    String telefono = jTable1.getValueAt(selectedRow, 3).toString();
+    String direccion = jTable1.getValueAt(selectedRow, 4).toString();
+    String cargo = jTable1.getValueAt(selectedRow, 5).toString();
+    String fechaInicio = jTable1.getValueAt(selectedRow, 6).toString();
+    String salario = jTable1.getValueAt(selectedRow, 7).toString();
+    String correoElectronico = jTable1.getValueAt(selectedRow, 8).toString();
+
+    // Establecer los valores en los JTextField
+    jTextField1.setText(idEmpleado);
+    jTextField2.setText(nombre);
+    jTextField3.setText(apellido);
+    jTextField4.setText(telefono);
+    jTextField5.setText(direccion);
+    jTextField7.setText(cargo);
+    jTextField8.setText(fechaInicio);
+    jTextField6.setText(salario);
+    jTextField9.setText(correoElectronico);
+
+    jButton2.setEnabled(false);
+} else {
+    JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (validarCampos()) {
-        // Realizar la acción
-    } else {
-        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+        // Obtener la fila seleccionada
+int filaSeleccionada = jTable1.getSelectedRow();
+if (filaSeleccionada == -1) {
+    JOptionPane.showMessageDialog(null, "Debes seleccionar un empleado para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+
+// Obtener el IdEmpleado de la fila seleccionada
+int idEmpleado = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+
+// Confirmar la eliminación
+int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar este empleado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+if (confirmacion == JOptionPane.YES_OPTION) {
+    // Eliminar el empleado de la base de datos
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        String sql = "DELETE FROM Empleados WHERE IdEmpleado=?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, idEmpleado);
+
+        int rowsDeleted = pstmt.executeUpdate();
+        if (rowsDeleted > 0) {
+            JOptionPane.showMessageDialog(null, "Empleado eliminado correctamente");
+            // Eliminar la fila de la tabla
+            modelo.removeRow(filaSeleccionada);
+            cargarDatos();
+        }
+        pstmt.close();
+        conn.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al eliminar empleado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (validarCampos(true)) {
+    // Obtener los valores de los JTextField
+    int idEmpleado = Integer.parseInt(jTextField1.getText());
+    String nombre = jTextField2.getText();
+    String apellido = jTextField3.getText();
+    String telefono = jTextField4.getText();
+    String direccion = jTextField5.getText();
+    String cargo = jTextField7.getText();
+    String fechaInicio = jTextField8.getText();
+    String salario = jTextField6.getText();
+    String correoElectronico = jTextField9.getText();
+
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        PreparedStatement ps = conn.prepareStatement("UPDATE Empleados SET Nombre = ?, Apellido = ?, Telefono = ?, Direccion = ?, Cargo = ?, FechaInicio = ?, Salario = ?, CorreoElectronico = ? WHERE IdEmpleado = ?");
+        ps.setString(1, nombre);
+        ps.setString(2, apellido);
+        ps.setString(3, telefono);
+        ps.setString(4, direccion);
+        ps.setString(5, cargo);
+        ps.setString(6, fechaInicio);
+        ps.setString(7, salario);
+        ps.setString(8, correoElectronico);
+        ps.setInt(9, idEmpleado);
+
+        int result = ps.executeUpdate();
+        if (result > 0) {
+            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        ps.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    limpiarCampos();
+    jButton2.setEnabled(true);
+    cargarDatos();
+} else {
+    JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TablaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TablaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TablaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TablaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TablaEmpleados().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(TablaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(TablaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(TablaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(TablaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
 
-    private boolean validarCampos() {
-    return !jTextField1.getText().isEmpty() &&
-           !jTextField8.getText().isEmpty() &&
-           !jTextField9.getText().isEmpty() &&
-           !jTextField6.getText().isEmpty() &&
-           !jTextField2.getText().isEmpty() &&
-           !jTextField3.getText().isEmpty() &&
-           !jTextField4.getText().isEmpty() &&
-           !jTextField5.getText().isEmpty() &&
-           !jTextField7.getText().isEmpty();
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            TablaEmpleados tablaEmpleados = new TablaEmpleados();
+            tablaEmpleados.setVisible(true);
+            tablaEmpleados.cargarDatos();
+        }
+    });
+}
+
+    public void cargarDatos() {
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("IdEmpleado");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Apellido");
+    modelo.addColumn("Telefono");
+    modelo.addColumn("Direccion");
+    modelo.addColumn("Cargo");
+    modelo.addColumn("FechaInicio");
+    modelo.addColumn("Salario");
+    modelo.addColumn("CorreoElectronico");
+
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM Empleados");
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Object[] fila = new Object[9];
+            fila[0] = rs.getInt("IdEmpleado");
+            fila[1] = rs.getString("Nombre");
+            fila[2] = rs.getString("Apellido");
+            fila[3] = rs.getString("Telefono");
+            fila[4] = rs.getString("Direccion");
+            fila[5] = rs.getString("Cargo");
+            fila[6] = rs.getString("FechaInicio");
+            fila[7] = rs.getDouble("Salario");
+            fila[8] = rs.getString("CorreoElectronico");
+            modelo.addRow(fila);
+        }
+
+        jTable1.setModel(modelo);
+
+        rs.close();
+        ps.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+    private boolean validarCampos(boolean esNuevoRegistro) {
+    if (esNuevoRegistro) {
+        return !jTextField1.getText().isEmpty() &&
+               !jTextField2.getText().isEmpty() &&
+               !jTextField3.getText().isEmpty() &&
+               !jTextField4.getText().isEmpty() &&
+               !jTextField5.getText().isEmpty() &&
+               !jTextField7.getText().isEmpty() &&
+               !jTextField8.getText().isEmpty() &&
+               !jTextField6.getText().isEmpty() &&
+               !jTextField9.getText().isEmpty();
+    } else {
+        return true; // Permitir edición sin validar campos
+    }
+}
+    
+    private void limpiarCampos() {
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+    jTextField7.setText("");
+    jTextField8.setText("");
+    jTextField6.setText("");
+    jTextField9.setText("");
 }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -385,6 +607,7 @@ public class TablaEmpleados extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -4,8 +4,12 @@
  */
 package luxuryautos;
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.DriverManager;
 
 
 /**
@@ -85,7 +89,7 @@ public class Registrarse extends javax.swing.JFrame {
         jLabel2.setText("Registrarse!");
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextField1.setText("   Usuario");
+        jTextField1.setText("   ");
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +122,11 @@ public class Registrarse extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("Registrarse");
         jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -331,6 +340,48 @@ public class Registrarse extends javax.swing.JFrame {
   
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Obtener los valores de los campos de texto
+    String idusuario = jTextField1.getText().trim();
+    String correoElectronico = jTextField2.getText().trim();
+    String contraseña = jTextField3.getText().trim();
+    String confirmarContraseña = jTextField4.getText().trim();
+
+    // Validar que los campos no estén vacíos
+    if (idusuario.isEmpty() || correoElectronico.isEmpty() || contraseña.isEmpty() || confirmarContraseña.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Validar que las contraseñas coincidan
+    if (!contraseña.equals(confirmarContraseña)) {
+        JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        // Insertar los datos en la base de datos
+        String query = "INSERT INTO Registros (IdUsuario, CorreoElectronico, Contraseña) VALUES (?, ?, ?)";
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setString(1, idusuario);
+        ps.setString(2, correoElectronico);
+        ps.setString(3, contraseña);
+
+        int rowsInserted = ps.executeUpdate();
+        if (rowsInserted > 0) {
+            JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al registrar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        ps.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error de conexión o consulta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -365,6 +416,13 @@ public class Registrarse extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void limpiarCampos() {
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -7,20 +7,29 @@ package luxuryautos;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.DriverManager;
 
 /**
  *
  * @author gonza
  */
 public class TablaReserva extends javax.swing.JFrame {
+    
+    private DefaultTableModel modelo;
 
     /**
      * Creates new form TablaReserva
      */
     public TablaReserva() {
         initComponents();
+         modelo = (DefaultTableModel) jTable1.getModel();
+         cargarDatos();
     }
 
     /**
@@ -52,6 +61,7 @@ public class TablaReserva extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField7 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,12 +70,10 @@ public class TablaReserva extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LogoLuxury.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 55)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Reservas");
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Nombre");
+        jLabel3.setText("IdReserva");
 
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -75,8 +83,7 @@ public class TablaReserva extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Telefono");
+        jLabel5.setText("IdCliente");
 
         jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -86,8 +93,7 @@ public class TablaReserva extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Vehiculo");
+        jLabel4.setText("IdVehiculo");
 
         jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -102,8 +108,7 @@ public class TablaReserva extends javax.swing.JFrame {
         jButton1.setText("INICIO");
 
         jLabel6.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Fecha_Reserva");
+        jLabel6.setText("FechaReserva");
 
         jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +118,6 @@ public class TablaReserva extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Estado");
 
         jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -132,11 +136,21 @@ public class TablaReserva extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         jButton3.setText("Editar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         jButton4.setText("Elimnar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -161,6 +175,16 @@ public class TablaReserva extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jButton5.setText("Guardar Cambios");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -168,8 +192,10 @@ public class TablaReserva extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addComponent(jButton2)
-                .addGap(240, 240, 240)
+                .addGap(82, 82, 82)
                 .addComponent(jButton3)
+                .addGap(95, 95, 95)
+                .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(178, 178, 178))
@@ -248,7 +274,8 @@ public class TablaReserva extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
@@ -331,31 +358,145 @@ String input = jTextField4.getText().trim(); // Elimina los espacios en blanco a
     }    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // Obtener los valores de los campos anteriores
-    String valor1 = jTextField1.getText().trim();
-    String valor2 = jTextField2.getText().trim();
-    String valor3 = jTextField3.getText().trim();
-    String valor4 = jTextField4.getText().trim();
+        if (validarCampos(true)) {
+    String idReservas = jTextField1.getText();
+    String idCliente = jTextField2.getText();
+    String idVehiculo = jTextField3.getText();
+    String fechaReserva = jTextField4.getText();
+    String estado = jTextField5.getText();
 
-    // Verificar si alguno de los campos anteriores está vacío
-    if (valor1.isEmpty() || valor2.isEmpty() || valor3.isEmpty() || valor4.isEmpty()) {
-        // Si algún campo está vacío, mostrar un mensaje de error
-        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-    } else {
-        // Si ninguno de los campos está vacío, agregar los valores a la tabla
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(new Object[]{valor1, valor2, valor3, valor4});
+    try (Connection conn = ConexionSQLServer.getConnection()) {
+        String query = "INSERT INTO Reservas (IdReserva, IdCliente, IdVehiculo, FechaReserva, Estado) VALUES (?, ?, ?, ?, ?)";
         
-        // Mostrar mensaje de éxito
-        JOptionPane.showMessageDialog(null, "Campos agregados a la tabla correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        
-        // Limpiar los campos de texto después de agregarlos a la tabla (opcional)
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, idReservas);
+            pstmt.setString(2, idCliente);
+            pstmt.setString(3, idVehiculo);
+            pstmt.setString(4, fechaReserva);
+            pstmt.setString(5, estado);
+
+            int rowsInserted = pstmt.executeUpdate();
+            if (rowsInserted > 0) {
+                JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al insertar los datos");
+            }
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error de conexión o consulta: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+    cargarDatos();
+} else {
+    JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (validarCampos(false)) {
+    // Obtener el índice de la fila seleccionada
+    int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(null, "Seleccione una fila para editar", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Obtener los valores de la fila seleccionada
+    String idReservas = jTable1.getValueAt(selectedRow, 0).toString();
+    String idCliente = jTable1.getValueAt(selectedRow, 1).toString();
+    String idVehiculo = jTable1.getValueAt(selectedRow, 2).toString();
+    String fechaReserva = jTable1.getValueAt(selectedRow, 3).toString();
+    String estado = jTable1.getValueAt(selectedRow, 4).toString();
+
+    // Establecer los valores en los JTextField
+    jTextField1.setText(idReservas);
+    jTextField2.setText(idCliente);
+    jTextField3.setText(idVehiculo);
+    jTextField4.setText(fechaReserva);
+    jTextField5.setText(estado);
+    
+    jButton2.setEnabled(false);
+} else {
+    JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (validarCampos(true)) {
+    // Obtener los valores de los JTextField
+    int idReservas = Integer.parseInt(jTextField1.getText());
+    int idCliente = Integer.parseInt(jTextField2.getText());
+    int idVehiculo = Integer.parseInt(jTextField3.getText());
+    String fechaReserva = jTextField4.getText();
+    String estado = jTextField5.getText();
+
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        PreparedStatement ps = conn.prepareStatement("UPDATE Reservas SET IdCliente = ?, IdVehiculo = ?, FechaReserva = ?, Estado = ? WHERE IdReserva = ?");
+        ps.setInt(1, idCliente);
+        ps.setInt(2, idVehiculo);
+        ps.setString(3, fechaReserva);
+        ps.setString(4, estado);
+        ps.setInt(5, idReservas);
+
+        int result = ps.executeUpdate();
+        if (result > 0) {
+            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        ps.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    limpiarCampos();
+    jButton2.setEnabled(true);
+    cargarDatos();
+} else {
+    JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       // Obtener la fila seleccionada
+int filaSeleccionada = jTable1.getSelectedRow();
+if (filaSeleccionada == -1) {
+    JOptionPane.showMessageDialog(null, "Debes seleccionar una reserva para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+
+// Obtener el IdReservas de la fila seleccionada
+int idReservas = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+
+// Confirmar la eliminación
+int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar esta reserva?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+if (confirmacion == JOptionPane.YES_OPTION) {
+    // Eliminar la reserva de la base de datos
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        String sql = "DELETE FROM Reservas WHERE IdReserva=?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, idReservas);
+
+        int rowsDeleted = pstmt.executeUpdate();
+        if (rowsDeleted > 0) {
+            JOptionPane.showMessageDialog(null, "Reserva eliminada correctamente");
+            // Eliminar la fila de la tabla
+            modelo.removeRow(filaSeleccionada);
+            cargarDatos();
+        }
+        pstmt.close();
+        conn.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al eliminar la reserva: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+    }//GEN-LAST:event_jButton4ActionPerformed
  private boolean validateInput(String input) {
     // Utilizamos una expresión regular para validar la entrada.
     // La expresión regular /^[A-Za-z ]+$/ verifica que la cadena contenga solo letras mayúsculas, minúsculas y espacios.
@@ -365,42 +506,99 @@ String input = jTextField4.getText().trim(); // Elimina los espacios en blanco a
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TablaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TablaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TablaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TablaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TablaReserva().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(TablaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(TablaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(TablaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(TablaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            TablaReserva tablaReserva = new TablaReserva();
+            tablaReserva.setVisible(true);
+            tablaReserva.cargarDatos();
+        }
+    });
+}
+    
+    public void cargarDatos() {
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("IdReserva");
+    modelo.addColumn("IdCliente");
+    modelo.addColumn("IdVehiculo");
+    modelo.addColumn("FechaReserva");
+    modelo.addColumn("Estado");
+
+    try {
+        Connection conn = ConexionSQLServer.getConnection();
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM Reservas");
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Object[] fila = new Object[5];
+            fila[0] = rs.getInt("IdReserva");
+            fila[1] = rs.getInt("IdCliente");
+            fila[2] = rs.getInt("IdVehiculo");
+            fila[3] = rs.getString("FechaReserva");
+            fila[4] = rs.getString("Estado");
+            modelo.addRow(fila);
+        }
+
+        jTable1.setModel(modelo);
+
+        rs.close();
+        ps.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+    
+    private boolean validarCampos(boolean esNuevoRegistro) {
+    if (esNuevoRegistro) {
+        return !jTextField1.getText().isEmpty() &&
+               !jTextField2.getText().isEmpty() &&
+               !jTextField3.getText().isEmpty() &&
+               !jTextField4.getText().isEmpty() &&
+               !jTextField5.getText().isEmpty();
+    } else {
+        return true; // Permitir edición sin validar campos
+    }
+}
+    
+    private void limpiarCampos() {
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

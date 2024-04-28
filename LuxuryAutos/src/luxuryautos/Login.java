@@ -4,17 +4,32 @@
  */
 package luxuryautos;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eliseo
  */
 public class Login extends javax.swing.JFrame {
 
+    
+        private Connection connection;
+
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        try {
+            connection = ConexionSQLServer.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+        }
     }
 
     /**
@@ -92,6 +107,11 @@ public class Login extends javax.swing.JFrame {
         jTextField4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField4.setText("   Usuario");
         jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
 
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField5.setText("   Contraseña");
@@ -275,14 +295,54 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Tablas frame = new Tablas();
-                frame.setVisible(true);
+        String usuario = jTextField4.getText().trim();
+String contraseña = jTextField5.getText().trim();
+
+if (usuario.isEmpty() || contraseña.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Debe ingresar usuario y contraseña", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+
+try {
+    String sql = "SELECT IdUsuario FROM Registros WHERE IdUsuario = ? AND Contraseña = ?";
+    PreparedStatement statement = connection.prepareStatement(sql);
+    statement.setString(1, usuario);
+    statement.setString(2, contraseña);
+    ResultSet result = statement.executeQuery();
+
+    if (result.next()) {
+        // Si el inicio de sesión es exitoso
+        if (usuario.equals("admin") && contraseña.equals("admin123")) {
+            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como administrador", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            // Abre la ventana principal de tu aplicación
+            Tablas frame = new Tablas();
+            frame.setVisible(true);
+            this.dispose(); // Cierra la ventana actual
+        } else {
+            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            // Abre la ventana de inicio2
+            inicio2 frame = new inicio2();
+            frame.setVisible(true);
+            this.dispose(); // Cierra la ventana actual
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+} catch (SQLException e) {
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Error al iniciar sesión", "Error", JOptionPane.ERROR_MESSAGE);
+}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Inicio frame = new Inicio();
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
