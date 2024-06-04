@@ -13,9 +13,9 @@ import java.sql.SQLException;
  * @author gonza
  */
 public class ConexionSQLServer {
-    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=Concesionario;encrypt=true;trustServerCertificate=true";
-    private static final String USER = "sa";
-    private static final String PASSWORD = "sql123";
+    private static final String URL = "jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3711625";
+    private static final String USER = "sql3711625";
+    private static final String PASSWORD = "5EsucEMDCr";
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);

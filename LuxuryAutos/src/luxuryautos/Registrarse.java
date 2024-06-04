@@ -333,13 +333,13 @@ public class Registrarse extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Obtener los valores de los campos de texto
-    String idusuario = jTextField1.getText().trim();
+    String usuario = jTextField1.getText().trim();
     String correoElectronico = jTextField2.getText().trim();
     String contraseña = jTextField3.getText().trim();
     String confirmarContraseña = jTextField4.getText().trim();
 
     // Validar que los campos no estén vacíos
-    if (idusuario.isEmpty() || correoElectronico.isEmpty() || contraseña.isEmpty() || confirmarContraseña.isEmpty()) {
+    if (usuario.isEmpty() || correoElectronico.isEmpty() || contraseña.isEmpty() || confirmarContraseña.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
@@ -351,20 +351,20 @@ public class Registrarse extends javax.swing.JFrame {
     }
 
     try {
-        // Insertar los datos en la base de datos
-        String query = "INSERT INTO Registros (IdUsuario, CorreoElectronico, Contraseña) VALUES (?, ?, ?)";
-        PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(1, idusuario);
-        ps.setString(2, correoElectronico);
-        ps.setString(3, contraseña);
+         String query = "INSERT INTO Registrarse (Usuario, CorreoElectronico, Contrasena) VALUES (?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, usuario);
+            ps.setString(2, correoElectronico);
+            ps.setString(3, contraseña);
 
-        int rowsInserted = ps.executeUpdate();
-        if (rowsInserted > 0) {
-            JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
-            limpiarCampos();
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al registrar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            int rowsInserted = ps.executeUpdate();
+            if (rowsInserted > 0) {
+                JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
+                limpiarCampos(); // Asegúrate de que este método esté implementado
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al registrar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
 
         ps.close();
     } catch (SQLException e) {
