@@ -108,6 +108,11 @@ public class CatalogoHyundai extends javax.swing.JFrame {
         jButton2.setText("Reserva");
 
         jButton3.setText("Comprar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTextField4.setBackground(new java.awt.Color(244, 237, 227));
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -117,6 +122,11 @@ public class CatalogoHyundai extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/hyundai/Elantra.png"))); // NOI18N
 
         jButton4.setText("Comprar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Reserva");
 
@@ -145,6 +155,11 @@ public class CatalogoHyundai extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/hyundai/Kona.png"))); // NOI18N
 
         jButton7.setText("Comprar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Reserva");
 
@@ -173,6 +188,11 @@ public class CatalogoHyundai extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/hyundai/Palaside.png"))); // NOI18N
 
         jButton10.setText("Comprar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Reserva");
 
@@ -212,6 +232,11 @@ public class CatalogoHyundai extends javax.swing.JFrame {
         jButton14.setText("Reserva");
 
         jButton15.setText("Comprar");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jTextField16.setBackground(new java.awt.Color(244, 237, 227));
         jTextField16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -235,6 +260,11 @@ public class CatalogoHyundai extends javax.swing.JFrame {
         jButton17.setText("Reserva");
 
         jButton18.setText("Comprar");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jTextField19.setBackground(new java.awt.Color(244, 237, 227));
         jTextField19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -500,6 +530,36 @@ public class CatalogoHyundai extends javax.swing.JFrame {
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Compras frame = new Compras();
+                frame.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Compras frame = new Compras();
+                frame.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       Compras frame = new Compras();
+                frame.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+       Compras frame = new Compras();
+                frame.setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+       Compras frame = new Compras();
+                frame.setVisible(true);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+      Compras frame = new Compras();
+                frame.setVisible(true);
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     /**
      * @param args the command line arguments
