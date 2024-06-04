@@ -4,13 +4,16 @@
  */
 package luxuryautos;
 
+import com.sun.jdi.connect.spi.Connection;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.PreparedStatement;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -26,7 +29,7 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 public class ReservasAutos extends javax.swing.JFrame {
     private ArrayList<ImageIcon> images;
     private int currentIndex = 0;
-
+    private java.sql.Connection connection;
     /**
      * Creates new form ReservasAutos
      */
@@ -35,6 +38,13 @@ public class ReservasAutos extends javax.swing.JFrame {
         images = new ArrayList<>();
         loadImages();
         updateImage();
+         try {
+        connection = ConexionSQLServer.getConnection();
+        System.out.println("Conexión exitosa");
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+    }
     }
     
     private void loadImages() {
@@ -111,24 +121,24 @@ public class ReservasAutos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldNombreCompleto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldNombreCarro = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextFieldNumeroTelefono = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTextFieldCorreoElectronico = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jTextFieldDUI = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jTextFieldDireccion = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        jTextFieldLicencia = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextField9 = new javax.swing.JTextField();
+        jTextFieldFechaReserva = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         panelRound1 = new luxuryautos.PanelRound();
         jLabel5 = new javax.swing.JLabel();
@@ -170,13 +180,14 @@ public class ReservasAutos extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNombreCompleto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTextFieldNombreCompleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldNombreCompletoActionPerformed(evt);
             }
         });
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Nombre Completo");
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
@@ -189,58 +200,64 @@ public class ReservasAutos extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNombreCarro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTextFieldNombreCarro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTextFieldNombreCarroActionPerformed(evt);
             }
         });
 
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Nombre del carro");
 
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNumeroTelefono.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTextFieldNumeroTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextFieldNumeroTelefonoActionPerformed(evt);
             }
         });
 
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Numero de teléfono");
 
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCorreoElectronico.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTextFieldCorreoElectronico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTextFieldCorreoElectronicoActionPerformed(evt);
             }
         });
 
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Correo electrónico");
 
-        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDUI.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTextFieldDUI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jTextFieldDUIActionPerformed(evt);
             }
         });
 
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("DUI");
 
-        jTextField7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDireccion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTextFieldDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                jTextFieldDireccionActionPerformed(evt);
             }
         });
 
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Dirección");
 
-        jTextField8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldLicencia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTextFieldLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                jTextFieldLicenciaActionPerformed(evt);
             }
         });
 
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Licecncia");
 
         jButton2.setText("Anterior");
@@ -257,13 +274,14 @@ public class ReservasAutos extends javax.swing.JFrame {
             }
         });
 
-        jTextField9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldFechaReserva.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTextFieldFechaReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                jTextFieldFechaReservaActionPerformed(evt);
             }
         });
 
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Fecha reserva");
 
         panelRound1.setBackground(new java.awt.Color(255, 255, 255));
@@ -321,24 +339,24 @@ public class ReservasAutos extends javax.swing.JFrame {
                         .addComponent(jLabel13))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNombreCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNumeroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel11)
-                            .addComponent(jTextField7)
+                            .addComponent(jTextFieldDireccion)
                             .addComponent(jLabel12)
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField6)
+                            .addComponent(jTextFieldLicencia)
+                            .addComponent(jTextFieldDUI)
                             .addComponent(jLabel10)
                             .addComponent(jLabel14)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextFieldFechaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
@@ -356,11 +374,11 @@ public class ReservasAutos extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -369,8 +387,8 @@ public class ReservasAutos extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextFieldNombreCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
                                 .addComponent(jButton3)))
@@ -380,16 +398,16 @@ public class ReservasAutos extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldNumeroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDUI, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel14))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFechaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -427,9 +445,9 @@ public class ReservasAutos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void jTextFieldFechaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFechaReservaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_jTextFieldFechaReservaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         nextImage();
@@ -439,127 +457,98 @@ public class ReservasAutos extends javax.swing.JFrame {
         previousImage();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void jTextFieldLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLicenciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_jTextFieldLicenciaActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jTextFieldDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDireccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jTextFieldDireccionActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jTextFieldDUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDUIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jTextFieldDUIActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTextFieldCorreoElectronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCorreoElectronicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTextFieldCorreoElectronicoActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextFieldNumeroTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextFieldNumeroTelefonoActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextFieldNombreCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreCarroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextFieldNombreCarroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String pdfPath = null;
+   // Obtener los valores de los campos de texto del formulario de reserva
+String nombreCompleto = jTextFieldNombreCompleto.getText().trim();
+String direccion = jTextFieldDireccion.getText().trim();
+String nombreCarro = jTextFieldNombreCarro.getText().trim();
+String licencia = jTextFieldLicencia.getText().trim();
+String numeroTelefono = jTextFieldNumeroTelefono.getText().trim();
+String dui = jTextFieldDUI.getText().trim();
+String correoElectronico = jTextFieldCorreoElectronico.getText().trim();
+String fechaReserva = jTextFieldFechaReserva.getText().trim();
 
-        try {
-            // Crear el documento PDF
-            PDDocument document = new PDDocument();
-            PDPage page = new PDPage(PDRectangle.A4);
-            document.addPage(page);
+// Validar que los campos no estén vacíos
+if (nombreCompleto.isEmpty() || direccion.isEmpty() || nombreCarro.isEmpty() || licencia.isEmpty() || numeroTelefono.isEmpty() || dui.isEmpty() || correoElectronico.isEmpty() || fechaReserva.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+// En algún lugar donde necesites hacer la inserción de datos
+try {
+    // Realizar la inserción de datos
+    String query = "INSERT INTO pagos (nombre_completo, direccion, nombre_carro, licencia, numero_telefono, dui, correo_electronico, fecha_reserva) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    PreparedStatement ps = connection.prepareStatement(query);
+    
+    // Establecer los valores de los parámetros
+    ps.setString(1, nombreCompleto);
+    ps.setString(2, direccion);
+    ps.setString(3, nombreCarro);
+    ps.setString(4, licencia);
+    ps.setString(5, numeroTelefono);
+    ps.setString(6, dui);
+    ps.setString(7, correoElectronico);
+    ps.setString(8, fechaReserva);
+    
+    // Ejecutar la consulta
+    int rowsInserted = ps.executeUpdate();
+    
+    // Verificar si se insertaron filas
+    if (rowsInserted > 0) {
+        JOptionPane.showMessageDialog(null, "¡Reserva registrada exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        limpiarCampos(); // Asegúrate de que este método esté implementado
+    } else {
+        JOptionPane.showMessageDialog(null, "Error al registrar la reserva", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    // Cerrar la conexión y la declaración preparada
+    ps.close();
+    connection.close();
+} catch (SQLException e) {
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Error de conexión o consulta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+}
 
-            // Iniciar el contenido de la página
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
-            // Cargar la fuente Roboto Condensed
-            PDType0Font font = PDType0Font.load(document, new File("C:\\Users\\marcu\\Documents\\NetBeansProjects\\LuxuryAutos\\LuxuryAutos\\src\\fuentes\\RobotoCondensed-VariableFont_wght.ttf"));
 
-            // Establecer la fuente y el tamaño del texto
-            contentStream.setFont(font, 12);
-
-            // Agregar el logo de la empresa
-            PDImageXObject logo = PDImageXObject.createFromFile("C:\\Users\\marcu\\Documents\\NetBeansProjects\\LuxuryAutos\\LuxuryAutos\\src\\imagenes\\logo  carro.png", document);
-            contentStream.drawImage(logo, 50, 750, 100, 50);
-
-            // Agregar encabezado
-            contentStream.beginText();
-            contentStream.newLineAtOffset(200, 750);
-            contentStream.setFont(font, 16);
-            contentStream.showText("Factura");
-            contentStream.setFont(font, 12);
-            contentStream.newLineAtOffset(0, -20);
-            contentStream.showText("Fecha: 01/06/2024");
-            contentStream.endText();
-
-            // Agregar información del cliente
-            contentStream.beginText();
-            contentStream.newLineAtOffset(50, 680);
-            contentStream.showText("Nombre del Cliente: Juan Perez");
-            contentStream.endText();
-
-            // Agregar tabla de items
-            contentStream.beginText();
-            contentStream.newLineAtOffset(50, 640);
-            contentStream.showText("Descripción");
-            contentStream.newLineAtOffset(350, 0);
-            contentStream.showText("Precio");
-            contentStream.newLineAtOffset(0, -20);
-            contentStream.showText("1. Producto A");
-            contentStream.newLineAtOffset(350, 0);
-            contentStream.showText("$100");
-            contentStream.newLineAtOffset(0, -20);
-            contentStream.showText("2. Producto B");
-            contentStream.newLineAtOffset(350, 0);
-            contentStream.showText("$200");
-            contentStream.newLineAtOffset(0, -20);
-            contentStream.setFont(font, 14);
-            contentStream.showText("Total: $300");
-            contentStream.endText();
-
-            // Agregar información de la empresa
-            contentStream.beginText();
-            contentStream.newLineAtOffset(50, 100);
-            contentStream.showText("Luxury Autos");
-            contentStream.newLineAtOffset(0, -20);
-            contentStream.showText("Calle Principal 123, Ciudad");
-            contentStream.newLineAtOffset(0, -20);
-            contentStream.showText("Teléfono: 555-1234");
-            contentStream.endText();
-
-            // Cerrar el contenido del PDF
-            contentStream.close();
-
-            // Mostrar el cuadro de diálogo de selección de archivo
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Guardar factura");
-            fileChooser.setSelectedFile(new File("factura.pdf"));
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos PDF", "pdf");
-            fileChooser.setFileFilter(filter);
-
-            int userSelection = fileChooser.showSaveDialog(null);
-            if (userSelection == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
-                pdfPath = selectedFile.getAbsolutePath();
-
-                // Guardar el documento PDF
-                document.save(pdfPath);
-                document.close();
-
-                System.out.println("Factura generada exitosamente!");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Manejar la excepción de E/S
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void limpiarCampos() {
+    jTextFieldNombreCompleto.setText("");
+    jTextFieldDireccion.setText("");
+    jTextFieldNombreCarro.setText("");
+    jTextFieldLicencia.setText("");
+    jTextFieldNumeroTelefono.setText("");
+    jTextFieldDUI.setText("");
+    jTextFieldCorreoElectronico.setText("");
+    jTextFieldFechaReserva.setText("");
+}
+    private void jTextFieldNombreCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreCompletoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldNombreCompletoActionPerformed
 
     private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
         // TODO add your handling code here:
@@ -624,14 +613,18 @@ public class ReservasAutos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextFieldCorreoElectronico;
+    private javax.swing.JTextField jTextFieldDUI;
+    private javax.swing.JTextField jTextFieldDireccion;
+    private javax.swing.JTextField jTextFieldFechaReserva;
+    private javax.swing.JTextField jTextFieldLicencia;
+    private javax.swing.JTextField jTextFieldNombreCarro;
+    private javax.swing.JTextField jTextFieldNombreCompleto;
+    private javax.swing.JTextField jTextFieldNumeroTelefono;
     private luxuryautos.PanelRound panelRound1;
     // End of variables declaration//GEN-END:variables
+
+    private Connection ObtenerConexion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
