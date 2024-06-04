@@ -4,6 +4,13 @@
  */
 package luxuryautos;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
+
 /**
  *
  * @author ludwi
@@ -334,8 +341,54 @@ public class Compras extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    String pdfPath = "factura.pdf";
+    
+        try {
+            // Crear el documento PDF
+            PDDocument document = new PDDocument();
+            PDPage page = new PDPage();
+            document.addPage(page);
+    
+            // Iniciar el contenido de la página
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            // Cargar la fuente Roboto Condensed
+            PDType0Font font = PDType0Font.load(document, new File("fonts/Roboto-Condensed.ttf"));
+    
+            // Establecer la fuente y el tamaño del texto
+            contentStream.setFont(font, 12);
+    
+            // Agregar contenido a la factura
+            contentStream.beginText();
+            contentStream.newLineAtOffset(100, 700); // Posición de inicio del texto
+            contentStream.showText("Factura");
+            contentStream.newLine();
+            contentStream.showText("Nombre del Cliente: Juan Perez");
+            contentStream.newLine();
+            contentStream.showText("Fecha: 01/06/2024");
+            contentStream.newLine();
+            contentStream.showText("Items:");
+            contentStream.newLine();
+            contentStream.showText("1. Producto A - $100");
+            contentStream.newLine();
+            contentStream.showText("2. Producto B - $200");
+            contentStream.newLine();
+            contentStream.showText("Total: $300");
+            contentStream.endText();
+    
+            // Cerrar el contenido del PDF
+            contentStream.close();
+    
+            // Guardar el documento PDF
+            document.save(pdfPath);
+            document.close();
+    
+            System.out.println("Factura generada exitosamente!");
+    
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Manejar la excepción de E/S
+        }    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
