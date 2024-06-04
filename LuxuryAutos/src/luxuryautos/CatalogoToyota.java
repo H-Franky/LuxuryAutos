@@ -99,6 +99,11 @@ public class CatalogoToyota extends javax.swing.JFrame {
         jTextField3.setBorder(null);
 
         jButton2.setText("Reserva");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Comprar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +128,11 @@ public class CatalogoToyota extends javax.swing.JFrame {
         });
 
         jButton5.setText("Reserva");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jTextField5.setBackground(new java.awt.Color(244, 237, 227));
         jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -149,6 +159,11 @@ public class CatalogoToyota extends javax.swing.JFrame {
         });
 
         jButton8.setText("Reserva");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jTextField8.setBackground(new java.awt.Color(244, 237, 227));
         jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -175,6 +190,11 @@ public class CatalogoToyota extends javax.swing.JFrame {
         });
 
         jButton11.setText("Reserva");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jTextField11.setBackground(new java.awt.Color(244, 237, 227));
         jTextField11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -206,6 +226,11 @@ public class CatalogoToyota extends javax.swing.JFrame {
         jTextField15.setBorder(null);
 
         jButton14.setText("Reserva");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setText("Comprar");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -232,6 +257,11 @@ public class CatalogoToyota extends javax.swing.JFrame {
         jTextField18.setBorder(null);
 
         jButton17.setText("Reserva");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setText("Comprar");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
@@ -502,6 +532,42 @@ public class CatalogoToyota extends javax.swing.JFrame {
         Compras frame = new Compras();
                 frame.setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Reservas frame = new Reservas();
+       frame.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       Reservas frame = new Reservas();
+       frame.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+       Reservas frame = new Reservas();
+       frame.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+       Reservas frame = new Reservas();
+       frame.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        Reservas frame = new Reservas();
+       frame.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        Reservas frame = new Reservas();
+       frame.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jButton17ActionPerformed
 
     /**
      * @param args the command line arguments
