@@ -298,35 +298,33 @@ if (usuario.isEmpty() || contraseña.isEmpty()) {
 }
 
 try {
-    String sql = "SELECT IdUsuario FROM Registros WHERE IdUsuario = ? AND Contraseña = ?";
-    PreparedStatement statement = connection.prepareStatement(sql);
-    statement.setString(1, usuario);
-    statement.setString(2, contraseña);
-    ResultSet result = statement.executeQuery();
+   String sql = "SELECT Usuario, Contrasena FROM Registrarse WHERE Usuario = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, usuario);
+            ResultSet result = statement.executeQuery();
 
-    if (result.next()) {
-        // Si el inicio de sesión es exitoso
-        if (usuario.equals("admin") && contraseña.equals("admin123")) {
-            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como administrador", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            // Abre la ventana principal de tu aplicación
-            Tablas frame = new Tablas();
-            frame.setVisible(true);
-            this.dispose(); // Cierra la ventana actual
-        } else {
-            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            // Abre la ventana de inicio2
-            inicio2 frame = new inicio2();
-            frame.setVisible(true);
-            this.dispose(); // Cierra la ventana actual
+            if (result.next()) {
+                String usuarioBD = result.getString("Usuario");
+                String contraseñaBD = result.getString("Contrasena");
+
+                if (usuarioBD.equals(usuario) && contraseñaBD.equals(contraseña)) {
+                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    inicio2 frame = new inicio2();
+                    frame.setVisible(true);
+                    this.dispose(); // Cierra la ventana actual
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            result.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-} catch (SQLException e) {
-    e.printStackTrace();
-    JOptionPane.showMessageDialog(this, "Error al iniciar sesión", "Error", JOptionPane.ERROR_MESSAGE);
-}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
