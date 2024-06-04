@@ -124,7 +124,7 @@ public class CatalogoPorsche extends javax.swing.JFrame {
 
         jTextField5.setBackground(new java.awt.Color(244, 237, 227));
         jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField5.setText("Placa: S-MB-1284");
+        jTextField5.setText("Placa: ABC-2468");
         jTextField5.setBorder(null);
 
         jTextField6.setBackground(new java.awt.Color(244, 237, 227));
@@ -134,7 +134,7 @@ public class CatalogoPorsche extends javax.swing.JFrame {
 
         jTextField7.setBackground(new java.awt.Color(244, 237, 227));
         jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField7.setText("Mercedes-Benz-  Clase E");
+        jTextField7.setText("        Porsche Cayenne");
         jTextField7.setBorder(null);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/porsche/Porsche 911.png"))); // NOI18N
@@ -147,7 +147,7 @@ public class CatalogoPorsche extends javax.swing.JFrame {
 
         jTextField8.setBackground(new java.awt.Color(244, 237, 227));
         jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField8.setText("Placa: S680-GUARD");
+        jTextField8.setText("Placa: DEF-1357");
         jTextField8.setBorder(null);
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,16 +157,16 @@ public class CatalogoPorsche extends javax.swing.JFrame {
 
         jTextField9.setBackground(new java.awt.Color(244, 237, 227));
         jTextField9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField9.setText("Color: Gris");
+        jTextField9.setText("Color: Bronze");
         jTextField9.setBorder(null);
 
         jTextField10.setBackground(new java.awt.Color(244, 237, 227));
         jTextField10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField10.setText("Mercedes-Benz-  Clase S");
+        jTextField10.setText("      Porsche Panamera");
         jTextField10.setToolTipText("");
         jTextField10.setBorder(null);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/mercedes/Mercedes-Benz-  Clase S.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/porsche/Porsche Panamera.png"))); // NOI18N
 
         jButton10.setText("Comprar");
 
@@ -176,31 +176,33 @@ public class CatalogoPorsche extends javax.swing.JFrame {
 
         jTextField11.setBackground(new java.awt.Color(244, 237, 227));
         jTextField11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField11.setText("Placa: S-AK-4055");
+        jTextField11.setText("Placa: GHI-9753");
         jTextField11.setBorder(null);
 
         jTextField12.setBackground(new java.awt.Color(244, 237, 227));
         jTextField12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField12.setText("Color: Negro");
+        jTextField12.setText("Color: Anarajando");
         jTextField12.setBorder(null);
 
         jTextField13.setBackground(new java.awt.Color(244, 237, 227));
         jTextField13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField13.setText("Mercedes-Benz-  Clase A");
+        jTextField13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField13.setText("Porsche Macan");
         jTextField13.setBorder(null);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/mercedes/Mercedes-Benz-  Clase A.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/porsche/Porsche Macan.png"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/mercedes/Mercedes-Benz-  Clase G.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/porsche/Porsche Taycan.png"))); // NOI18N
 
         jTextField14.setBackground(new java.awt.Color(244, 237, 227));
         jTextField14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField14.setText("Mercedes-Benz-  Clase G");
+        jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField14.setText("Porsche Taycan");
         jTextField14.setBorder(null);
 
         jTextField15.setBackground(new java.awt.Color(244, 237, 227));
         jTextField15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField15.setText("Placa: S-G-6512");
+        jTextField15.setText("Placa: JKL-8642");
         jTextField15.setBorder(null);
 
         jButton13.setText("Alquiler");
@@ -211,19 +213,25 @@ public class CatalogoPorsche extends javax.swing.JFrame {
 
         jTextField16.setBackground(new java.awt.Color(244, 237, 227));
         jTextField16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField16.setText("Color: Azul");
+        jTextField16.setText("Color: Rosado");
         jTextField16.setBorder(null);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/mercedes/Mercedes-Benz-  Clase GLC.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/porsche/Porsche Boxster.png"))); // NOI18N
 
         jTextField17.setBackground(new java.awt.Color(244, 237, 227));
         jTextField17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField17.setText("Mercedes-Benz-  Clase GLC");
+        jTextField17.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField17.setText("Porsche Boxster");
         jTextField17.setBorder(null);
+        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField17ActionPerformed(evt);
+            }
+        });
 
         jTextField18.setBackground(new java.awt.Color(244, 237, 227));
         jTextField18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField18.setText("Placa: 254-MBC");
+        jTextField18.setText("Placa: MNO-7531");
         jTextField18.setBorder(null);
         jTextField18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,7 +250,7 @@ public class CatalogoPorsche extends javax.swing.JFrame {
         jTextField19.setText("Color: Blanco");
         jTextField19.setBorder(null);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/mercedes/Mercedes-Benz-  Clase E.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/porsche/Porsche Cayenne.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -292,7 +300,7 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -360,7 +368,9 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(jButton7))))
                         .addGap(9, 9, 9))
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)))
                 .addGap(109, 109, 109))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -500,6 +510,10 @@ public class CatalogoPorsche extends javax.swing.JFrame {
     private void jTextField18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField18ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField18ActionPerformed
+
+    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField17ActionPerformed
 
     /**
      * @param args the command line arguments
