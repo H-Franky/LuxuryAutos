@@ -153,7 +153,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField9.setBackground(new java.awt.Color(244, 237, 227));
         jTextField9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField9.setText("Color: Negro");
+        jTextField9.setText("Color: Rojo");
         jTextField9.setBorder(null);
 
         jTextField10.setBackground(new java.awt.Color(244, 237, 227));
@@ -176,7 +176,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField12.setBackground(new java.awt.Color(244, 237, 227));
         jTextField12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField12.setText("Color: Negro");
+        jTextField12.setText("Color: Blanco");
         jTextField12.setBorder(null);
 
         jTextField13.setBackground(new java.awt.Color(244, 237, 227));
@@ -186,7 +186,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/toyota/Toyota Highlander.png"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mercedes-Benz-  Clase C.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/toyota/Toyota Tacoma.png"))); // NOI18N
 
         jTextField14.setBackground(new java.awt.Color(244, 237, 227));
         jTextField14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -206,10 +206,10 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField16.setBackground(new java.awt.Color(244, 237, 227));
         jTextField16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField16.setText("Color: Negro");
+        jTextField16.setText("Color: Marron");
         jTextField16.setBorder(null);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mercedes-Benz-  Clase C.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogos/toyota/Toyota Prius.png"))); // NOI18N
 
         jTextField17.setBackground(new java.awt.Color(244, 237, 227));
         jTextField17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
