@@ -251,7 +251,6 @@ public class ReservasAutos extends javax.swing.JFrame {
         });
 
         jButton3.setText("Siguiente");
-        jButton3.setActionCommand("Siguiente");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
