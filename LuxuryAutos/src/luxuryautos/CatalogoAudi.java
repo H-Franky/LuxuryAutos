@@ -602,37 +602,37 @@ public class CatalogoAudi extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Reservas frame = new Reservas();
+        ReservasAutos frame = new ReservasAutos();
                     frame.setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Reservas frame = new Reservas();
+        ReservasAutos frame = new ReservasAutos();
                     frame.setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        Reservas frame = new Reservas();
+        ReservasAutos frame = new ReservasAutos();
                     frame.setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-       Reservas frame = new Reservas();
+       ReservasAutos frame = new ReservasAutos();
                     frame.setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        Reservas frame = new Reservas();
+        ReservasAutos frame = new ReservasAutos();
                     frame.setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        Reservas frame = new Reservas();
+        ReservasAutos frame = new ReservasAutos();
                     frame.setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_jButton17ActionPerformed
