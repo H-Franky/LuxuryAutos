@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -499,8 +502,9 @@ if (nombreCompleto.isEmpty() || direccion.isEmpty() || nombreCarro.isEmpty() || 
 }
 // En algún lugar donde necesites hacer la inserción de datos
 try {
+    
     // Realizar la inserción de datos
-    String query = "INSERT INTO pagos (nombre_completo, direccion, nombre_carro, licencia, numero_telefono, dui, correo_electronico, fecha_reserva) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    String query = "INSERT INTO Reservas (nombre_completo, direccion, nombre_carro, licencia, numero_telefono, dui, correo_electronico, fecha_reserva) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     PreparedStatement ps = connection.prepareStatement(query);
     
     // Establecer los valores de los parámetros
