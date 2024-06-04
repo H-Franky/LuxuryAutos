@@ -90,12 +90,17 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField2.setBackground(new java.awt.Color(244, 237, 227));
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField2.setText("Mercedes-Benz- Clase C");
+        jTextField2.setText("     Toyota Corolla");
         jTextField2.setBorder(null);
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jTextField3.setBackground(new java.awt.Color(244, 237, 227));
         jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField3.setText("Placa: S-MB-20260");
+        jTextField3.setText("Placa: ABC-1234");
         jTextField3.setBorder(null);
 
         jButton1.setText("Alquiler");
@@ -106,10 +111,11 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField4.setBackground(new java.awt.Color(244, 237, 227));
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField4.setText("Color: Negro");
+        jTextField4.setText("Color: Azul");
+        jTextField4.setToolTipText("");
         jTextField4.setBorder(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mercedes-Benz-  Clase C.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Toyota Corolla.png"))); // NOI18N
 
         jButton4.setText("Comprar");
 
@@ -119,7 +125,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField5.setBackground(new java.awt.Color(244, 237, 227));
         jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField5.setText("Placa: S-MB-20260");
+        jTextField5.setText("Placa: DEF-5678");
         jTextField5.setBorder(null);
 
         jTextField6.setBackground(new java.awt.Color(244, 237, 227));
@@ -129,7 +135,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField7.setBackground(new java.awt.Color(244, 237, 227));
         jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField7.setText("Mercedes-Benz- Clase C");
+        jTextField7.setText("       Toyota Camry");
         jTextField7.setBorder(null);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mercedes-Benz-  Clase C.png"))); // NOI18N
@@ -142,7 +148,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField8.setBackground(new java.awt.Color(244, 237, 227));
         jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField8.setText("Placa: S-MB-20260");
+        jTextField8.setText("Placa: GHI-9012");
         jTextField8.setBorder(null);
 
         jTextField9.setBackground(new java.awt.Color(244, 237, 227));
@@ -152,7 +158,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField10.setBackground(new java.awt.Color(244, 237, 227));
         jTextField10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField10.setText("Mercedes-Benz- Clase C");
+        jTextField10.setText("         Toyota RAV4");
         jTextField10.setBorder(null);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mercedes-Benz-  Clase C.png"))); // NOI18N
@@ -165,7 +171,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField11.setBackground(new java.awt.Color(244, 237, 227));
         jTextField11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField11.setText("Placa: S-MB-20260");
+        jTextField11.setText("Placa: JKL-3456");
         jTextField11.setBorder(null);
 
         jTextField12.setBackground(new java.awt.Color(244, 237, 227));
@@ -175,7 +181,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField13.setBackground(new java.awt.Color(244, 237, 227));
         jTextField13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField13.setText("Mercedes-Benz- Clase C");
+        jTextField13.setText("      Toyota Highlander");
         jTextField13.setBorder(null);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mercedes-Benz-  Clase C.png"))); // NOI18N
@@ -184,12 +190,12 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField14.setBackground(new java.awt.Color(244, 237, 227));
         jTextField14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField14.setText("Mercedes-Benz- Clase C");
+        jTextField14.setText("        Toyota Tacoma");
         jTextField14.setBorder(null);
 
         jTextField15.setBackground(new java.awt.Color(244, 237, 227));
         jTextField15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField15.setText("Placa: S-MB-20260");
+        jTextField15.setText("Placa: MNO-7890");
         jTextField15.setBorder(null);
 
         jButton13.setText("Alquiler");
@@ -207,12 +213,12 @@ public class CatalogoToyota extends javax.swing.JFrame {
 
         jTextField17.setBackground(new java.awt.Color(244, 237, 227));
         jTextField17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField17.setText("Mercedes-Benz- Clase C");
+        jTextField17.setText("          Toyota Prius");
         jTextField17.setBorder(null);
 
         jTextField18.setBackground(new java.awt.Color(244, 237, 227));
         jTextField18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField18.setText("Placa: S-MB-20260");
+        jTextField18.setText("Placa: PQR-2345");
         jTextField18.setBorder(null);
 
         jButton16.setText("Alquiler");
@@ -271,7 +277,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
                                             .addGap(18, 18, 18)
                                             .addComponent(jButton10)))
                                     .addGap(9, 9, 9))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,8 +365,8 @@ public class CatalogoToyota extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -371,7 +377,7 @@ public class CatalogoToyota extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addComponent(jButton2)
                             .addComponent(jButton3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -461,6 +467,10 @@ public class CatalogoToyota extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
