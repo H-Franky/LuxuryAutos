@@ -31,28 +31,24 @@ public class CatalogoPorsche extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
         jTextField11 = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
@@ -60,14 +56,12 @@ public class CatalogoPorsche extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
         jTextField15 = new javax.swing.JTextField();
-        jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jTextField16 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField17 = new javax.swing.JTextField();
         jTextField18 = new javax.swing.JTextField();
-        jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jTextField19 = new javax.swing.JTextField();
@@ -104,8 +98,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
         jTextField3.setText("Placa: XYZ-6789");
         jTextField3.setBorder(null);
 
-        jButton1.setText("Alquiler");
-
         jButton2.setText("Reserva");
 
         jButton3.setText("Comprar");
@@ -129,8 +121,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
         });
 
         jButton5.setText("Reserva");
-
-        jButton6.setText("Alquiler");
 
         jTextField5.setBackground(new java.awt.Color(244, 237, 227));
         jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -157,8 +147,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
         });
 
         jButton8.setText("Reserva");
-
-        jButton9.setText("Alquiler");
 
         jTextField8.setBackground(new java.awt.Color(244, 237, 227));
         jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -192,8 +180,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
 
         jButton11.setText("Reserva");
 
-        jButton12.setText("Alquiler");
-
         jTextField11.setBackground(new java.awt.Color(244, 237, 227));
         jTextField11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField11.setText("Placa: GHI-9753");
@@ -224,8 +210,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
         jTextField15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField15.setText("Placa: JKL-8642");
         jTextField15.setBorder(null);
-
-        jButton13.setText("Alquiler");
 
         jButton14.setText("Reserva");
 
@@ -263,8 +247,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                 jTextField18ActionPerformed(evt);
             }
         });
-
-        jButton16.setText("Alquiler");
 
         jButton17.setText("Reserva");
 
@@ -304,10 +286,8 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                                     .addGap(61, 61, 61)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton1)
-                                    .addGap(24, 24, 24)
                                     .addComponent(jButton2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGap(108, 108, 108)
                                     .addComponent(jButton3)))
                             .addGap(9, 9, 9))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -321,10 +301,8 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                                             .addGap(61, 61, 61)
                                             .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jButton12)
-                                            .addGap(18, 18, 18)
                                             .addComponent(jButton11)
-                                            .addGap(18, 18, 18)
+                                            .addGap(108, 108, 108)
                                             .addComponent(jButton10)))
                                     .addGap(9, 9, 9)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -336,16 +314,10 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 6, Short.MAX_VALUE)
-                                        .addComponent(jButton6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton5)
-                                        .addGap(28, 28, 28)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton5))
+                                .addGap(92, 92, 92)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton4)
                                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -357,10 +329,8 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                                         .addGap(61, 61, 61)
                                         .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton13)
-                                        .addGap(18, 18, 18)
                                         .addComponent(jButton14)
-                                        .addGap(18, 18, 18)
+                                        .addGap(108, 108, 108)
                                         .addComponent(jButton15)))
                                 .addGap(9, 9, 9)))
                         .addGap(87, 87, 87))
@@ -380,10 +350,8 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                                         .addGap(61, 61, 61)
                                         .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton16)
-                                        .addGap(18, 18, 18)
                                         .addComponent(jButton17)
-                                        .addGap(18, 18, 18)
+                                        .addGap(114, 114, 114)
                                         .addComponent(jButton18)))
                                 .addGap(9, 9, 9))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,10 +360,8 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                                     .addGap(61, 61, 61)
                                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton9)
-                                    .addGap(18, 18, 18)
                                     .addComponent(jButton8)
-                                    .addGap(18, 18, 18)
+                                    .addGap(108, 108, 108)
                                     .addComponent(jButton7))))
                         .addGap(9, 9, 9))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -426,11 +392,10 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton6)
-                                .addComponent(jButton5)
-                                .addComponent(jButton4)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton4)
+                                .addComponent(jButton5)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -441,7 +406,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton9)
                                 .addComponent(jButton8)
                                 .addComponent(jButton7))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -456,7 +420,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
                             .addComponent(jButton2)
                             .addComponent(jButton3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
@@ -471,7 +434,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                             .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton12)
                             .addComponent(jButton11)
                             .addComponent(jButton10))
                         .addGap(38, 38, 38))
@@ -487,7 +449,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                                     .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton13)
                                     .addComponent(jButton14)
                                     .addComponent(jButton15)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -500,7 +461,6 @@ public class CatalogoPorsche extends javax.swing.JFrame {
                                     .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton16)
                                     .addComponent(jButton17)
                                     .addComponent(jButton18))))
                         .addContainerGap())))
@@ -611,24 +571,18 @@ public class CatalogoPorsche extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
