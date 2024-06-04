@@ -316,29 +316,53 @@ if (usuario.isEmpty() || contraseña.isEmpty()) {
 }
 
 try {
-   String sql = "SELECT Usuario, Contrasena FROM Registrarse WHERE Usuario = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, usuario);
-            ResultSet result = statement.executeQuery();
+    // Verificar en la primera tabla (Registrarse)
+    String sql1 = "SELECT Usuario, Contrasena FROM Registrarse WHERE Usuario = ?";
+    PreparedStatement statement1 = connection.prepareStatement(sql1);
+    statement1.setString(1, usuario);
+    ResultSet result1 = statement1.executeQuery();
 
-            if (result.next()) {
-                String usuarioBD = result.getString("Usuario");
-                String contraseñaBD = result.getString("Contrasena");
+    if (result1.next()) {
+        String usuarioBD1 = result1.getString("Usuario");
+        String contraseñaBD1 = result1.getString("Contrasena");
 
-                if (usuarioBD.equals(usuario) && contraseñaBD.equals(contraseña)) {
-                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    inicio2 frame = new inicio2();
-                    frame.setVisible(true);
-                    this.dispose(); // Cierra la ventana actual
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+        if (usuarioBD1.equals(usuario) && contraseñaBD1.equals(contraseña)) {
+            JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso en Clientes", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            inicio2 frame = new inicio2();
+            frame.setVisible(true);
+            this.dispose(); // Cierra la ventana actual
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        // No encontrado en la primera tabla, verificar en la segunda tabla (Empleados)
+        String sql2 = "SELECT Usuario, contrasena FROM Empleados WHERE Usuario = ?";
+        PreparedStatement statement2 = connection.prepareStatement(sql2);
+        statement2.setString(1, usuario);
+        ResultSet result2 = statement2.executeQuery();
+
+        if (result2.next()) {
+            String usuarioBD2 = result2.getString("Usuario");
+            String contraseñaBD2 = result2.getString("contrasena");
+
+            if (usuarioBD2.equals(usuario) && contraseñaBD2.equals(contraseña)) {
+                JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso en Empleados", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                Tablas frame = new Tablas(); // Cambia esto al nombre de la ventana que deseas abrir
+                frame.setVisible(true);
+                this.dispose(); // Cierra la ventana actual
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-            result.close();
-            statement.close();
+        result2.close();
+        statement2.close();
+    }
+
+    result1.close();
+    statement1.close();
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

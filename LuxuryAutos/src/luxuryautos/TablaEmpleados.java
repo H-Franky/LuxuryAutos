@@ -67,6 +67,8 @@ public class TablaEmpleados extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jTextField10 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jTextField11 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -191,6 +193,11 @@ public class TablaEmpleados extends javax.swing.JFrame {
             }
         });
 
+        jTextField11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jLabel12.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 14)); // NOI18N
+        jLabel12.setText("Usuario");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -212,38 +219,39 @@ public class TablaEmpleados extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)
-                                .addGap(43, 43, 43))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(89, 89, 89)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6))
-                                        .addGap(93, 93, 93)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7)))
-                                    .addComponent(jLabel11)
-                                    .addComponent(jTextField9))
-                                .addGap(85, 85, 85))))
+                                .addGap(43, 43, 43))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel10)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addGap(93, 93, 93)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)))
+                            .addComponent(jLabel11)
+                            .addComponent(jTextField9)))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addComponent(jButton2)
@@ -258,6 +266,11 @@ public class TablaEmpleados extends javax.swing.JFrame {
                 .addContainerGap(68, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(291, 291, 291)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(790, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,16 +290,22 @@ public class TablaEmpleados extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel11)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,6 +326,11 @@ public class TablaEmpleados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(213, 213, 213)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(609, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -335,7 +359,7 @@ public class TablaEmpleados extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (validarCampos(true)) {
     String idEmpleado = jTextField1.getText();
-    String nombre = jTextField2.getText();
+    String nombre = jTextField11.getText();
     String apellido = jTextField3.getText();
     String telefono = jTextField4.getText();
     String direccion = jTextField5.getText();
@@ -343,9 +367,10 @@ public class TablaEmpleados extends javax.swing.JFrame {
     String fechaInicio = jTextField8.getText();
     String salario = jTextField6.getText();
     String correoElectronico = jTextField9.getText();
+    String usuario=jTextField2.getText();
 
     try (Connection conn = ConexionSQLServer.getConnection()) {
-        String query = "INSERT INTO Empleados (IdEmpleado, Nombre, Apellido, Telefono, Direccion, Cargo, FechaInicio, Salario, CorreoElectronico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Empleados (IdEmpleado, Nombre, Apellido, Telefono, Direccion, Cargo, FechaInicio, Salario, CorreoElectronico, Usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         try (PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, idEmpleado);
@@ -357,6 +382,7 @@ public class TablaEmpleados extends javax.swing.JFrame {
             pstmt.setString(7, fechaInicio);
             pstmt.setString(8, salario);
             pstmt.setString(9, correoElectronico);
+            pstmt.setString(10,usuario);
 
             int rowsInserted = pstmt.executeUpdate();
             if (rowsInserted > 0) {
@@ -394,10 +420,12 @@ public class TablaEmpleados extends javax.swing.JFrame {
     String fechaInicio = jTable1.getValueAt(selectedRow, 6).toString();
     String salario = jTable1.getValueAt(selectedRow, 7).toString();
     String correoElectronico = jTable1.getValueAt(selectedRow, 8).toString();
+    String usuario = jTable1.getValueAt(selectedRow, 9).toString();
+
 
     // Establecer los valores en los JTextField
     jTextField1.setText(idEmpleado);
-    jTextField2.setText(nombre);
+    jTextField11.setText(nombre);
     jTextField3.setText(apellido);
     jTextField4.setText(telefono);
     jTextField5.setText(direccion);
@@ -405,6 +433,7 @@ public class TablaEmpleados extends javax.swing.JFrame {
     jTextField8.setText(fechaInicio);
     jTextField6.setText(salario);
     jTextField9.setText(correoElectronico);
+    jTextField2.setText(usuario);
 
     jButton2.setEnabled(false);
 } else {
@@ -453,7 +482,7 @@ if (confirmacion == JOptionPane.YES_OPTION) {
         if (validarCampos(true)) {
     // Obtener los valores de los JTextField
     int idEmpleado = Integer.parseInt(jTextField1.getText());
-    String nombre = jTextField2.getText();
+    String nombre = jTextField11.getText();
     String apellido = jTextField3.getText();
     String telefono = jTextField4.getText();
     String direccion = jTextField5.getText();
@@ -461,6 +490,7 @@ if (confirmacion == JOptionPane.YES_OPTION) {
     String fechaInicio = jTextField8.getText();
     String salario = jTextField6.getText();
     String correoElectronico = jTextField9.getText();
+    String usuario = jTextField2.getText();
 
     try {
         Connection conn = ConexionSQLServer.getConnection();
@@ -474,6 +504,7 @@ if (confirmacion == JOptionPane.YES_OPTION) {
         ps.setString(7, salario);
         ps.setString(8, correoElectronico);
         ps.setInt(9, idEmpleado);
+        ps.setString(10,usuario);
 
         int result = ps.executeUpdate();
         if (result > 0) {
@@ -544,6 +575,8 @@ if (confirmacion == JOptionPane.YES_OPTION) {
     modelo.addColumn("FechaInicio");
     modelo.addColumn("Salario");
     modelo.addColumn("CorreoElectronico");
+    modelo.addColumn("Usuario");
+
 
     try {
         Connection conn = ConexionSQLServer.getConnection();
@@ -561,6 +594,8 @@ if (confirmacion == JOptionPane.YES_OPTION) {
             fila[6] = rs.getString("FechaInicio");
             fila[7] = rs.getDouble("Salario");
             fila[8] = rs.getString("CorreoElectronico");
+            fila[9] = rs.getString("Usuario");
+
             modelo.addRow(fila);
         }
 
@@ -577,13 +612,14 @@ if (confirmacion == JOptionPane.YES_OPTION) {
     private boolean validarCampos(boolean esNuevoRegistro) {
     if (esNuevoRegistro) {
         return !jTextField1.getText().isEmpty() &&
-               !jTextField2.getText().isEmpty() &&
+               !jTextField11.getText().isEmpty() &&
                !jTextField3.getText().isEmpty() &&
                !jTextField4.getText().isEmpty() &&
                !jTextField5.getText().isEmpty() &&
                !jTextField7.getText().isEmpty() &&
                !jTextField8.getText().isEmpty() &&
                !jTextField6.getText().isEmpty() &&
+               !jTextField2.getText().isEmpty() &&
                !jTextField9.getText().isEmpty();
     } else {
         return true; // Permitir edición sin validar campos
@@ -592,7 +628,7 @@ if (confirmacion == JOptionPane.YES_OPTION) {
     
     private void limpiarCampos() {
     jTextField1.setText("");
-    jTextField2.setText("");
+    jTextField11.setText("");
     jTextField3.setText("");
     jTextField4.setText("");
     jTextField5.setText("");
@@ -600,6 +636,8 @@ if (confirmacion == JOptionPane.YES_OPTION) {
     jTextField8.setText("");
     jTextField6.setText("");
     jTextField9.setText("");
+    jTextField2.setText("");
+
 }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -611,6 +649,7 @@ if (confirmacion == JOptionPane.YES_OPTION) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -624,6 +663,7 @@ if (confirmacion == JOptionPane.YES_OPTION) {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
