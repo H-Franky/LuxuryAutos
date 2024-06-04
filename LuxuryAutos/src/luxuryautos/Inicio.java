@@ -230,11 +230,13 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Registrarse frame = new Registrarse();
                 frame.setVisible(true);
+                dispose(); 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Login frame = new Login();
                 frame.setVisible(true);
+                dispose(); 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -215,36 +215,43 @@ public class Tablas extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TablaReserva frame = new TablaReserva();
                 frame.setVisible(true);
+                dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         TablaInventario frame = new TablaInventario();
                 frame.setVisible(true);
+                dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         TablaEmpleados frame = new TablaEmpleados();
                 frame.setVisible(true);
+                dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         TablaClientes frame = new TablaClientes();
                 frame.setVisible(true);
+                dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         TablaVentas frame = new TablaVentas();
                 frame.setVisible(true);
+                dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         TablaAlquiler frame = new TablaAlquiler();
                 frame.setVisible(true);
+                dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         Inicio frame = new Inicio();
         frame.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
