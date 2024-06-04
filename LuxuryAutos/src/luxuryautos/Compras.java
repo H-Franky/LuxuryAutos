@@ -6,10 +6,14 @@ package luxuryautos;
 
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 /**
  *
@@ -341,54 +345,100 @@ public class Compras extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String pdfPath = "factura.pdf";
-    
-        try {
-            // Crear el documento PDF
-            PDDocument document = new PDDocument();
-            PDPage page = new PDPage();
-            document.addPage(page);
-    
-            // Iniciar el contenido de la página
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+  String pdfPath = null;
 
-            // Cargar la fuente Roboto Condensed
-            PDType0Font font = PDType0Font.load(document, new File("fonts/Roboto-Condensed.ttf"));
+try {
+    // Crear el documento PDF
+    PDDocument document = new PDDocument();
+    PDPage page = new PDPage(PDRectangle.A4);
+    document.addPage(page);
+
+    // Iniciar el contenido de la página
+    PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+    // Cargar la fuente Roboto Condensed
+    PDType0Font font = PDType0Font.load(document, new File("C:\\Users\\marcu\\Documents\\NetBeansProjects\\LuxuryAutos\\LuxuryAutos\\src\\fuentes\\RobotoCondensed-VariableFont_wght.ttf"));
+
+    // Establecer la fuente y el tamaño del texto
+    contentStream.setFont(font, 12);
+
+    // Agregar el logo de la empresa
+    PDImageXObject logo = PDImageXObject.createFromFile("C:\\Users\\marcu\\Documents\\NetBeansProjects\\LuxuryAutos\\LuxuryAutos\\src\\imagenes\\logo  carro.png", document);
+    contentStream.drawImage(logo, 50, 750, 100, 50);
+
+    // Agregar encabezado
+    contentStream.beginText();
+    contentStream.newLineAtOffset(200, 750);
+    contentStream.setFont(font, 16);
+    contentStream.showText("Factura");
+    contentStream.setFont(font, 12);
+    contentStream.newLineAtOffset(0, -20);
+    contentStream.showText("Fecha: 01/06/2024");
+    contentStream.endText();
+
+    // Agregar información del cliente
+    contentStream.beginText();
+    contentStream.newLineAtOffset(50, 680);
+    contentStream.showText("Nombre del Cliente: Juan Perez");
+    contentStream.endText();
+
+    // Agregar tabla de items
+    contentStream.beginText();
+    contentStream.newLineAtOffset(50, 640);
+    contentStream.showText("Descripción");
+    contentStream.newLineAtOffset(350, 0);
+    contentStream.showText("Precio");
+    contentStream.newLineAtOffset(0, -20);
+    contentStream.showText("1. Producto A");
+    contentStream.newLineAtOffset(350, 0);
+    contentStream.showText("$100");
+    contentStream.newLineAtOffset(0, -20);
+    contentStream.showText("2. Producto B");
+    contentStream.newLineAtOffset(350, 0);
+    contentStream.showText("$200");
+    contentStream.newLineAtOffset(0, -20);
+    contentStream.setFont(font, 14);
+    contentStream.showText("Total: $300");
+    contentStream.endText();
+
+    // Agregar información de la empresa
+    contentStream.beginText();
+    contentStream.newLineAtOffset(50, 100);
+    contentStream.showText("Luxury Autos");
+    contentStream.newLineAtOffset(0, -20);
+    contentStream.showText("Calle Principal 123, Ciudad");
+    contentStream.newLineAtOffset(0, -20);
+    contentStream.showText("Teléfono: 555-1234");
+    contentStream.endText();
+
+    // Cerrar el contenido del PDF
+    contentStream.close();
+
+    // Mostrar el cuadro de diálogo de selección de archivo
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setDialogTitle("Guardar factura");
+    fileChooser.setSelectedFile(new File("factura.pdf"));
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos PDF", "pdf");
+    fileChooser.setFileFilter(filter);
+
+    int userSelection = fileChooser.showSaveDialog(null);
+    if (userSelection == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+        pdfPath = selectedFile.getAbsolutePath();
+
+        // Guardar el documento PDF
+        document.save(pdfPath);
+        document.close();
+
+        System.out.println("Factura generada exitosamente!");
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+    // Manejar la excepción de E/S
+}
+
     
-            // Establecer la fuente y el tamaño del texto
-            contentStream.setFont(font, 12);
-    
-            // Agregar contenido a la factura
-            contentStream.beginText();
-            contentStream.newLineAtOffset(100, 700); // Posición de inicio del texto
-            contentStream.showText("Factura");
-            contentStream.newLine();
-            contentStream.showText("Nombre del Cliente: Juan Perez");
-            contentStream.newLine();
-            contentStream.showText("Fecha: 01/06/2024");
-            contentStream.newLine();
-            contentStream.showText("Items:");
-            contentStream.newLine();
-            contentStream.showText("1. Producto A - $100");
-            contentStream.newLine();
-            contentStream.showText("2. Producto B - $200");
-            contentStream.newLine();
-            contentStream.showText("Total: $300");
-            contentStream.endText();
-    
-            // Cerrar el contenido del PDF
-            contentStream.close();
-    
-            // Guardar el documento PDF
-            document.save(pdfPath);
-            document.close();
-    
-            System.out.println("Factura generada exitosamente!");
-    
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Manejar la excepción de E/S
-        }    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
